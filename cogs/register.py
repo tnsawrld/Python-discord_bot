@@ -14,7 +14,7 @@ db_connect = Database_Connect()
 
 def Check_Username(conection_db, username):
     cursor = conection_db.cursor()
-    cursor.execute("SELECT COUNT(*) FROM lumibot WHERE BINARY username = %s", (username,))
+    cursor.execute("SELECT COUNT(*) FROM playerucp WHERE BINARY ucp = %s", (username,))
     result = cursor.fetchone()
     return result[0] > 0  
 
@@ -31,13 +31,13 @@ class register(commands.Cog):
         reg_ch = int(register_channel)
         await interaction.response.defer()
         if reg_ch != interaction.channel.id:
-            await interaction.response.send_message(f"Perintah hanya bisa digunakan di <#{register_channel}> ")
+            await interaction.followup.send(f"Perintah hanya bisa digunakan di <#{register_channel}> ")
             return
         try:
             cursor = db_connect.cursor()
 
             id_discord = interaction.user.id
-            pquery = "SELECT * FROM lumibot WHERE id_discord = %s"
+            pquery = "SELECT DiscordID FROM playerucp WHERE DiscordID = %s"
             cursor.execute(pquery, (id_discord,))
             row = cursor.fetchone()
             
@@ -46,15 +46,15 @@ class register(commands.Cog):
                 return
             else:    
                 if row is None:
-                    rand = random.randint(100000, 999999)
-                    query = "INSERT INTO lumibot (id_discord, username, kode) VALUES (%s, %s, %s)"
-                    values = (id_discord, name, rand)
+                    verify = random.randint(100000, 999999)
+                    query = "INSERT INTO playerucp (ucp, verifycode, DiscordID) VALUES (%s, %s, %s)"
+                    values = (name, verify, id_discord)
                     cursor.execute(query, values)
                     db_connect.commit()
                     await interaction.followup.send(f"Berhasil terdaftar `{name}` dengan discord id : `{id_discord}`")
-                    await interaction.user.send(f"Kode verifikasi mu : `{rand}`")
+                    await interaction.user.send(f"Kode verifikasi mu : `{verify}`")
                 else:
-                    await interaction.followup.send(f"Kamu sudah pernah mendaftarkan akun discord! `{row[2]}` id : {id_discord}")
+                    await interaction.followup.send(f"Kamu sudah pernah mendaftarkan akun discord! id : {id_discord}")
         except mysql.connector.IntegrityError() as err:
             await interaction.response.send_message("Kamu sudah terdaftar, silahkan coba lagi nanti!")
             print(f"Error : {err}")
