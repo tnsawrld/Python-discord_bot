@@ -4,18 +4,18 @@ import random
 import os
 from discord.ext import commands
 
-#--------------------[WELCOME MESSAGE]-----------------------------
-class MemberJoinHandler(commands.Cog):
+#--------------------[LEAVE MESSAGE]-----------------------------
+class MemberLeaveHandler(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
     @commands.Cog.listener()
     async def on_ready(self):
-        print(f"[File] : {__name__} berhasil dijalankan")
+        print(f"[File] : {__name__} berhasil dijalankan!")
 
     @commands.Cog.listener()
-    async def on_member_join(self, member: discord.Member):
-        print(f"[Event] : on_member_join berhasil berjalan!")
+    async def on_member_remove(self, member: discord.Member):
+        print(f"[Event] : on_member_leave berhasil berjalan!")
 
         ch_welcome = member.guild.system_channel
         if ch_welcome is None:
@@ -42,13 +42,13 @@ class MemberJoinHandler(commands.Cog):
                 profil_edit = easy_pil.Editor(profil_img).resize((250, 250)).circle_image()
 
                 font_big = easy_pil.Font.poppins(size=90, variant="bold")
-                font_small = easy_pil.Font.poppins(size=60, variant="bold")
+                font_small = easy_pil.Font.poppins(size=50, variant="bold")
 
                 background_edit.paste(profil_edit, (835, 340))
                 background_edit.ellipse((835, 340), 250, 250, outline="white", stroke_width=6)
 
-                background_edit.text((960, 620), f"Selamat datang di {member.guild.name}!", color="white", align="center", font=font_big)
-                background_edit.text((960, 740), f"{member.name} adalah member ke {member.guild.member_count}", color="white", align="center", font=font_small)
+                background_edit.text((960, 620), f"Selamat tinggal {member.name}!", color="white", align="center", font=font_big)
+                background_edit.text((960, 740), f"Terima kasih sudah bergabung ke dalam server {member.guild.name}!", color="white", align="center", font=font_small)
 
                 file_img = discord.File(fp=background_edit.image_bytes, filename=random_image)
             except Exception as e:
@@ -56,14 +56,14 @@ class MemberJoinHandler(commands.Cog):
                 return
             #send images to the discord channel
             try:
-                await ch_welcome.send(f"Hallo {member.name}!, pastikan kamu sudah membaca rules ya!")
+                await ch_welcome.send(f"Selamat tinggal {member.name}!, hati-hati dijalan!")
                 await ch_welcome.send(file=file_img)
-                print("[Event] Pesan selamat datang berhasil dikirim.")
+                print("[Event] Pesan selamat tinggal berhasil dikirim.")
             except Exception as e:
                 print(f"[Event] : Error saat mengirim pesan atau gambar >> {e}!")
 
         except Exception as e:
-            print(f"[Event] : Terjadi error di event on_member_join >> {e}!")
+            print(f"[Event] : Terjadi error di event on_member_leave >> {e}!")
 
 async def setup(bot):
-    await bot.add_cog(MemberJoinHandler(bot))
+    await bot.add_cog(MemberLeaveHandler(bot))
