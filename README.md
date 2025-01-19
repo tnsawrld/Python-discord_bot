@@ -42,8 +42,9 @@ Ini adalah bot simple yang dibuat dengan `Python` menggunakan libary `discord.py
    pip install mysql-connector-python
    ```
 
-3. **Setup config.ini :**
-   Tambahkan token, database ke config.ini:
+3. **Setup the BOT :**
+   - Tambahkan token, database ke config.ini
+   - Periksa setiap file untuk mengganti database
 
 4. **Run the Bot:**
    Klik run di VScode atau menggunakan `terminal`:
@@ -70,4 +71,4 @@ Setup bot di [Discord Developer](https://discord.com/developers/applications):
 - Privileged Gateway Intents semua harus on
 
 ## About Me
-- [Youtube](https://www.youtube.com/@Tnsawrld):
+- [Youtube](https://www.youtube.com/@Tnsawrld)
