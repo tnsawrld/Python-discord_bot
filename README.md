@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-# Discord Bot Documentation
+# Python Discord Bot
 
 ## About
 Ini adalah bot simple yang dibuat dengan `Python` menggunakan libary `discord.py`. Pembuatan bot ini ditujukan untuk `SAMP` dalam memanage server
