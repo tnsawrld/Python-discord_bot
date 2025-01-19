@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Discord Bot Documentation
 
 ## About
@@ -71,3 +72,6 @@ Setup bot di [Discord Developer](https://discord.com/developers/applications):
 
 ## About Me
 - [Youtube](https://www.youtube.com/@Tnsawrld):
+=======
+menyusul
+>>>>>>> 585b64576c8c0a0d4adfaea7794d102468eda3b5
