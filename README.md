@@ -70,8 +70,8 @@ Ini adalah bot simple yang dibuat dengan `Python` menggunakan libary `discord.py
 Setup bot di [Discord Developer](https://discord.com/developers/applications):
 - Privileged Gateway Intents semua harus on
 
-## About Me
-- [Youtube](update.md)
+## Changelog
+- [Update changelog](update.md)
 
 ## About Me
 - [Youtube](https://www.youtube.com/@Tnsawrld)
