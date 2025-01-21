@@ -9,7 +9,7 @@ class user(commands.Cog):
     @commands.Cog.listener()
     async def on_ready(self):
         print(f"[File] : {__name__} berhasil dijalankan!")
-    
+
     @app_commands.command(name="hello", description="Helloo user!!")
     async def halo(self, interaction: discord.Interaction):
         await interaction.response.send_message(f"Hallo {interaction.user.mention}, ada yang bisaku bantu?")

@@ -71,4 +71,7 @@ Setup bot di [Discord Developer](https://discord.com/developers/applications):
 - Privileged Gateway Intents semua harus on
 
 ## About Me
+- [Youtube](update.md)
+
+## About Me
 - [Youtube](https://www.youtube.com/@Tnsawrld)

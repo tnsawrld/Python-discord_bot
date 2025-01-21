@@ -29,6 +29,7 @@ config.read("config.ini")
 TOKEN = config['main']['token']
 DB_HOST = config['mysql']['host']
 DB_NAME = config['mysql']['db_name']
+
 #--------------------[MYSQL CONNECT]----------------------------
 database_connetion = Database_Connect()
 try:
@@ -37,6 +38,7 @@ try:
 except mysql.connector.Error as e:
     print(f"[MySQL] : Gagal tersambung ke : {DB_HOST}, database : {DB_NAME}")
     print(f"Error : {e}")
+
 #--------------------[ACTIVITY BOT]-----------------------------
 bot_status = cycle(["Asistant for Sencillo Roleplay", "Made by TnsaWRLD", "i'm smart :p hehe"])
 @tasks.loop(seconds=5)
@@ -55,11 +57,6 @@ async def on_ready():
         print(f"Ditemukan : {len(synced_commands)} commands!")
     except Exception as e:
         print("Error syncing aplication : ", e)
-
-#testing slash
-@bot.tree.command(name="tes", description="Testing slash commands bot")
-async def tes(interaction: discord.Interaction):
-    await interaction.response.send_message(f"Hallo {interaction.user.name}!, ini hanya tes ya!")
 
 #load all files in the /cogs folder
 async def CodeLoad():
