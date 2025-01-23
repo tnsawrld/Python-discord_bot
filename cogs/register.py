@@ -4,21 +4,14 @@ import random
 import configparser
 from other.database import Database_Connect
 from discord.ext import commands
-from collections import namedtuple
 from discord import app_commands
+from other.utils import *
 
 config = configparser.ConfigParser()
 config.read("./config.ini")
 register_channel = config['channel']['register']
 
 db_connect = Database_Connect()
-
-#Check whether the username exists or not
-def Check_Username(conection_db, username):
-    cursor = conection_db.cursor()
-    cursor.execute("SELECT COUNT(*) FROM playerucp WHERE BINARY ucp = %s", (username,))
-    result = cursor.fetchone()
-    return result[0] > 0
 
 class register(commands.Cog):
     def __init__(self, bot):
